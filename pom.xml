@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.expatrio</groupId>
-	<artifactId>cabmanagement</artifactId>
+	<artifactId>cabmanagement2024</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Expatrio Cab Management</name>
 	<description>Expatrio Cab Management</description>
