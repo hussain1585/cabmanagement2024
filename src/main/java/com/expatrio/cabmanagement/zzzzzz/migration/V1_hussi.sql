@@ -1,0 +1,16 @@
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (1,'BLUE','AUDI','Q3',2024,10,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (2,'WHITE','MERCEDES','MAYBACH',2024,11,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (3,'BLACK','BMW','X4',2024,12,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (4,'RED','TATA','ALTROZ',2024,13,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (5,'BLUE','FORD','FIGO',2024,14,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (6,'WHITE','HONDA','AMAZE',2024,15,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (7,'BLACK','HYUNDAI','CRETA',2024,16,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (8,'RED','SUZUKI','CIAZ',2024,17,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (9,'BLUE','KIA','SONNET',2024,18,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (10,'WHITE','FIAT','PUNTO',2024,19,'AVAILABLE');
+INSERT INTO public.car_entity (id,color,make,model,price_per_hour,release_year,state) VALUES (11,'BLACK','RENAULT','DUSTER',2024,20,'AVAILABLE');
+INSERT INTO public.customer_entity (id,address,email) VALUES (1,'BERLIN','a1@gmail.com');
+INSERT INTO public.customer_entity (id,address,email) VALUES (2,'BERLIN','a2@gmail.com');
+INSERT INTO public.customer_entity (id,address,email) VALUES (3,'BERLIN','a3@gmail.com');
+INSERT INTO public.customer_entity (id,address,email) VALUES (4,'BERLIN','a4@gmail.com');
+INSERT INTO public.customer_entity (id,address,email) VALUES (5,'BERLIN','a5@gmail.com');
