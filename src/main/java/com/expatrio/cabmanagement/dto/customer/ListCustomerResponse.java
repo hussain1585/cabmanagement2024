@@ -1,6 +1,6 @@
 package com.expatrio.cabmanagement.dto.customer;
 
-import com.expatrio.cabmanagement.ports.jpa.entity.CustomerEntity;
+import com.expatrio.cabmanagement.ports.jpa.entity.customer.CustomerEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -5,10 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Data
-public class UpdateCustomerResponse {
-    private CustomerDTO customerDTO;
+public class AddressDTO {
+    private String houseNo;
+    private String street;
+    private String city;
+    private String country;
 }

@@ -1,24 +1,25 @@
-package com.expatrio.cabmanagement.ports.jpa.entity;
+package com.expatrio.cabmanagement.ports.jpa.entity.customer;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class UserInfo {
+@AllArgsConstructor
+public class ContactEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    private String name;
-    private String email;
-    private String password;
-    private String roles;
 
+    private String email;
+    private String phoneNo;
 }

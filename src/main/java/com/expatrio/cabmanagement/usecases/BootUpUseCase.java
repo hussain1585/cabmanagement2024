@@ -2,8 +2,7 @@ package com.expatrio.cabmanagement.usecases;
 
 import com.expatrio.cabmanagement.ports.jpa.entity.BookingEntity;
 import com.expatrio.cabmanagement.ports.jpa.entity.CarEntity;
-import com.expatrio.cabmanagement.enums.CarState;
-import com.expatrio.cabmanagement.ports.jpa.entity.CustomerEntity;
+import com.expatrio.cabmanagement.ports.jpa.entity.customer.CustomerEntity;
 import com.expatrio.cabmanagement.ports.jpa.repository.booking.BookingEntityRepository;
 import com.expatrio.cabmanagement.ports.jpa.repository.car.CarEntityRepository;
 import com.expatrio.cabmanagement.ports.jpa.repository.customer.CustomerEntityRepository;
@@ -71,7 +70,7 @@ public class BootUpUseCase implements CommandLineRunner {
         for (CustomerEntity customer : customers) {
             for (CarEntity car : cars) {
                 BookingEntity booking = BookingEntity.builder()
-                        .customerEntity(customer)
+                        .customer(customer)
 //                        .carEntity(car)
                         .startTime(startTime)
                         .endTime(startTime.plusMinutes(240))

@@ -1,6 +1,5 @@
-package com.expatrio.cabmanagement.ports.jpa.entity;
+package com.expatrio.cabmanagement.ports.jpa.entity.customer;
 
-import com.expatrio.cabmanagement.ports.jpa.entity.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +15,10 @@ public class UserInfoDetails implements UserDetails {
     private String password;
     private List<GrantedAuthority> authorities;
 
-    public UserInfoDetails(UserInfo userInfo) {
-        name = userInfo.getName();
-        password = userInfo.getPassword();
-        authorities = Arrays.stream(userInfo.getRoles().split(","))
+    public UserInfoDetails(UserInfoEntity userInfoEntity) {
+        name = userInfoEntity.getName();
+        password = userInfoEntity.getPassword();
+        authorities = Arrays.stream(userInfoEntity.getRole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }

@@ -3,8 +3,8 @@ package com.expatrio.cabmanagement.api;
 import com.expatrio.cabmanagement.dto.booking.*;
 import com.expatrio.cabmanagement.dto.car.CarDTO;
 import com.expatrio.cabmanagement.dto.car.ReserveCarResponse;
-import com.expatrio.cabmanagement.mappers.BookingToBookingEntityMapper;
-import com.expatrio.cabmanagement.mappers.CarToCarEntityMapper;
+import com.expatrio.cabmanagement.mappers.BookingDtoToEntityMapper;
+import com.expatrio.cabmanagement.mappers.CarEntityToDtoMapper;
 import com.expatrio.cabmanagement.ports.jpa.entity.BookingEntity;
 import com.expatrio.cabmanagement.ports.jpa.entity.CarEntity;
 import com.expatrio.cabmanagement.usecases.AddBookingUseCase;
@@ -26,20 +26,20 @@ public class BookingController {
     private final GetBookingUseCase getBookingUseCase;
 
     private final AddBookingUseCase addBookingUseCase;
-    private final BookingToBookingEntityMapper bookingMapper;
-    private final CarToCarEntityMapper carMapper;
+    private final BookingDtoToEntityMapper bookingMapper;
+    private final CarEntityToDtoMapper carMapper;
 
     @GetMapping("/getBookingById")
     public GetBookingByIdResponse gerBookingById(@RequestParam int id) {
         BookingEntity bookingEntity = getBookingUseCase.getBookingById(id);
-        BookingDTO bookingDTO = bookingMapper.bookingEntityToBookingDTO(bookingEntity);
+        BookingDTO bookingDTO = bookingMapper.entityToDto(bookingEntity);
         return GetBookingByIdResponse.builder().bookingDTO(bookingDTO).build();
     }
 
     @GetMapping("/getAllBookings")
     public GetAllBookingResponse getAllBookings() {
         List<BookingEntity> bookingEntityList = getBookingUseCase.getAllBookings();
-        List<BookingDTO> bookingDTOList = bookingMapper.bookingEntityListToBookingDTOList(bookingEntityList);
+        List<BookingDTO> bookingDTOList = bookingMapper.entityListToDtoList(bookingEntityList);
         return GetAllBookingResponse.builder().bookingDTOList(bookingDTOList).build();
     }
 
@@ -48,7 +48,7 @@ public class BookingController {
     public GetAvailableCarsResponse getAvailableCars(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
                                                      @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime) {
         List<CarEntity> availableCars = getBookingUseCase.getAvailableCars(startTime, endTime);
-        List<CarDTO> cars = carMapper.carEntityListToCarDTOList(availableCars);
+        List<CarDTO> cars = carMapper.entityListToDtoList(availableCars);
         return GetAvailableCarsResponse.builder().availableCarList(cars).build();
     }
 
@@ -58,7 +58,7 @@ public class BookingController {
                                          @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
                                          @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime) {
         BookingEntity reservedCarEntity = addBookingUseCase.reserveCar(carId, customerId, startTime, endTime);
-        CarDTO reservedCarDTO = carMapper.carEntityToCarDTO(reservedCarEntity.getCarEntity());
+        CarDTO reservedCarDTO = carMapper.entityToDto(reservedCarEntity.getCar());
         return ReserveCarResponse.builder().reservedCar(reservedCarDTO).build();
     }
 

@@ -7,11 +7,11 @@ import org.mapstruct.Mapper;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface CarToCarEntityMapper {
+public interface CarEntityToDtoMapper {
 
-    CarEntity carDTOToCarEntity(CarDTO carDTO);
+    CarEntity dtoToEntity(CarDTO carDTO);
 
-    CarDTO carEntityToCarDTO(CarEntity carEntity);
+    CarDTO entityToDto(CarEntity carEntity);
 
-    List<CarDTO> carEntityListToCarDTOList(List<CarEntity> carEntityList);
+    List<CarDTO> entityListToDtoList(List<CarEntity> carEntityList);
 }

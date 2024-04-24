@@ -1,7 +1,7 @@
 package com.expatrio.cabmanagement.ports.jpa.entity;
 
-import com.expatrio.cabmanagement.enums.BookingStatus;
 import com.expatrio.cabmanagement.enums.CarState;
+import com.expatrio.cabmanagement.ports.jpa.entity.customer.CustomerEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,11 +30,11 @@ public class BookingEntity {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_car")
-    private CarEntity carEntity;
+    private CarEntity car;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_customer")
-    private CustomerEntity customerEntity;
+    private CustomerEntity customer;
 
 
 }

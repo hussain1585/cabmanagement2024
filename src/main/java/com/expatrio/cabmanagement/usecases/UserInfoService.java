@@ -1,8 +1,10 @@
 package com.expatrio.cabmanagement.usecases;
 
-import com.expatrio.cabmanagement.ports.jpa.entity.UserInfo;
-import com.expatrio.cabmanagement.ports.jpa.entity.UserInfoDetails;
-import com.expatrio.cabmanagement.ports.jpa.repository.UserInfoRepository;
+import com.expatrio.cabmanagement.dto.customer.UserInfoDTO;
+import com.expatrio.cabmanagement.mappers.UserInfoDtoToEntity;
+import com.expatrio.cabmanagement.ports.jpa.entity.customer.UserInfoEntity;
+import com.expatrio.cabmanagement.ports.jpa.entity.customer.UserInfoDetails;
+import com.expatrio.cabmanagement.ports.jpa.repository.customer.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,25 +15,31 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+//@RequiredArgsConstructor
 public class UserInfoService implements UserDetailsService {
 
     @Autowired
-    private UserInfoRepository repository;
+    private UserInfoRepository userRepository;
 
     @Autowired
-    private PasswordEncoder encoder;
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserInfoDtoToEntity userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserInfo> userDetail = repository.findByName(username);
+        Optional<UserInfoEntity> userDetail = userRepository.findByName(username);
         // Converting userDetail to UserDetails
         return userDetail.map(UserInfoDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found " + username));
     }
 
-    public UserInfo addUser(UserInfo userInfo) {
-        userInfo.setPassword(encoder.encode(userInfo.getPassword()));
-        return repository.save(userInfo);
+    public UserInfoEntity addUser(UserInfoDTO userInfoDTO) {
+
+        UserInfoEntity userInfoEntity = userMapper.dtoToEntity(userInfoDTO);
+        userInfoEntity.setPassword(passwordEncoder.encode(userInfoEntity.getPassword()));
+        return userRepository.save(userInfoEntity);
     }
 
 

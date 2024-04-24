@@ -3,8 +3,8 @@ package com.expatrio.cabmanagement.usecases;
 import com.expatrio.cabmanagement.dto.customer.*;
 import com.expatrio.cabmanagement.exceptions.CarNotFoundException;
 import com.expatrio.cabmanagement.exceptions.CustomerNotFoundException;
-import com.expatrio.cabmanagement.mappers.CustomerToCustomerEntityMapper;
-import com.expatrio.cabmanagement.ports.jpa.entity.CustomerEntity;
+import com.expatrio.cabmanagement.mappers.CustomerDtoToEntityMapper;
+import com.expatrio.cabmanagement.ports.jpa.entity.customer.CustomerEntity;
 import com.expatrio.cabmanagement.ports.jpa.repository.customer.CustomerEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class GetCustomerUseCase {
 
     private final CustomerEntityRepository customerEntityRepository;
 
-    private final CustomerToCustomerEntityMapper mapper;
+    private final CustomerDtoToEntityMapper mapper;
 
     public CustomerEntity getCustomerById(Integer id) {
         return customerEntityRepository.findById(id)
@@ -33,7 +33,7 @@ public class GetCustomerUseCase {
     }
 
     public CustomerEntity addCustomer(CustomerDTO customerDTO) {
-        CustomerEntity customerEntity = mapper.customerDTOToCustomerEntity(customerDTO);
+        CustomerEntity customerEntity = mapper.dtoToEntity(customerDTO);
         return customerEntityRepository.save(customerEntity);
     }
 
@@ -44,7 +44,7 @@ public class GetCustomerUseCase {
     public CustomerEntity updateCustomer(CustomerDTO customerDTO) {
         customerEntityRepository.findById(customerDTO.getId())
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not found with Id " + customerDTO.getId()));
-        CustomerEntity updatedCustomerEntity = mapper.customerDTOToCustomerEntity(customerDTO);
+        CustomerEntity updatedCustomerEntity = mapper.dtoToEntity(customerDTO);
         return customerEntityRepository.save(updatedCustomerEntity);
     }
 

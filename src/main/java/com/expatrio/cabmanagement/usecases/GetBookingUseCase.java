@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -40,7 +39,7 @@ public class GetBookingUseCase {
 //                .orElseThrow(() -> new CustomerNotFoundException("customer not found with id :" + addBookingRequest.getCarId()));
 
         List<BookingEntity> bookingInTimeWindow = bookingEntityRepository.findByStartTimeGreaterThanEqualOrEndTimeLessThanEqual(startTime, endTime);
-        Set<CarEntity> carSetWithConflictingBooking = bookingInTimeWindow.stream().map(BookingEntity::getCarEntity).collect(Collectors.toSet());
+        Set<CarEntity> carSetWithConflictingBooking = bookingInTimeWindow.stream().map(BookingEntity::getCar).collect(Collectors.toSet());
         List<CarEntity> allCars = carEntityRepository.findAll();
         allCars.removeAll(carSetWithConflictingBooking);
         return allCars;

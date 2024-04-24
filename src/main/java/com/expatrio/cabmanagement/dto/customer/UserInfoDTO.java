@@ -5,10 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Data
-public class UpdateCustomerResponse {
-    private CustomerDTO customerDTO;
+public class UserInfoDTO {
+
+    private String name;
+    private String password;
+    private String role;
+
+    private AddressDTO address;
+    private ContactDTO contact;
 }

@@ -2,7 +2,7 @@ package com.expatrio.cabmanagement.usecases;
 
 import com.expatrio.cabmanagement.dto.car.*;
 import com.expatrio.cabmanagement.exceptions.CarNotFoundException;
-import com.expatrio.cabmanagement.mappers.CarToCarEntityMapper;
+import com.expatrio.cabmanagement.mappers.CarEntityToDtoMapper;
 import com.expatrio.cabmanagement.ports.jpa.entity.CarEntity;
 import com.expatrio.cabmanagement.ports.jpa.repository.car.CarEntityRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.List;
 public class GetCarUseCase {
 
     private final CarEntityRepository carEntityRepository;
-    private final CarToCarEntityMapper mapper;
+    private final CarEntityToDtoMapper mapper;
 
     public CarEntity gerCarById(int id) {
         return carEntityRepository.findById(id).orElseThrow(() -> new CarNotFoundException("Car not found with Id: " + id));
@@ -26,7 +26,7 @@ public class GetCarUseCase {
     }
 
     public CarEntity addCar(CarDTO carDTO) {
-        CarEntity carEntity = mapper.carDTOToCarEntity(carDTO);
+        CarEntity carEntity = mapper.dtoToEntity(carDTO);
         return carEntityRepository.save(carEntity);
     }
 
@@ -36,7 +36,7 @@ public class GetCarUseCase {
 
     public CarEntity updateCar(CarDTO carDTO) {
         carEntityRepository.findById(carDTO.getId()).orElseThrow(() -> new CarNotFoundException("Car not found with Id: " + carDTO.getId()));
-        CarEntity carEntity = mapper.carDTOToCarEntity(carDTO);
+        CarEntity carEntity = mapper.dtoToEntity(carDTO);
         return carEntityRepository.save(carEntity);
     }
 

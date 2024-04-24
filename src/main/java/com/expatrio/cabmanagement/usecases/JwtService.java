@@ -21,6 +21,7 @@ import java.util.function.Function;
 public class JwtService {
 
     public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
+    public static final int MILLISECONDS_IN_24_HOURS = 1000 * 60 * 60 * 60 * 24;
 
     public String generateToken(String userName) {
         log.info("creating token for user : {}", userName);
@@ -34,7 +35,7 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+                .setExpiration(new Date(System.currentTimeMillis() + MILLISECONDS_IN_24_HOURS))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 
@@ -80,6 +81,4 @@ public class JwtService {
         final String username = extractUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-
-
 }

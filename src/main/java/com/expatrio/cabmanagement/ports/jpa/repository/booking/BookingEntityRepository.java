@@ -8,7 +8,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BookingEntityRepository extends JpaRepository<BookingEntity, Integer> {
-    BookingEntity findByCarEntity_IdAndCustomerEntity_Id(int id, int id1);
+    BookingEntity findByCar_IdAndCustomer_Id(int carId, int customerId);
+
     List<BookingEntity> findByStartTimeGreaterThanEqualOrEndTimeLessThanEqual(LocalDateTime startTime, LocalDateTime endTime);
-    List<BookingEntity> findByCarEntity_Id(int id);
+    List<BookingEntity> findByCar_Id(int carId);
+
+
 }
