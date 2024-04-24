@@ -75,11 +75,13 @@
             <version>1.5.3.Final</version>
         </dependency>
 
-        <!--		<dependency>-->
-        <!--			<groupId>org.flywaydb</groupId>-->
-        <!--			<artifactId>flyway-core</artifactId>-->
-        <!--			<version>9.22.3</version>-->
-        <!--		</dependency>-->
+<!--        FLYWAY-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+<!--        FLYWAY-->
+
 
         <!--		Swagger-->
         <dependency>
