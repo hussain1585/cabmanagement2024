@@ -16,7 +16,7 @@ import java.util.List;
 @ControllerAdvice
 public class BookingAdvice {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(BookingAlreadyExistsException.class)
     public ResponseEntity<ExistingBookingExceptionResponse> handleBookingAlreadyExistsException(BookingAlreadyExistsException exception)
     {
         log.debug("handling API exception => BookingAlreadyExistsException ");
